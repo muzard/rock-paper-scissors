@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let choices = ["rock", "paper", "scissors"];
+        let computerChoice;
+        let playerChoice;
+        let result;
+
+        function getComputerChoice() {
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        function getPlayerChoice() {
+            let answer = prompt("What will you play?");
+            let playerChoice = answer.toLowerCase();
+            return playerChoice;
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection) {
+                let computerSelection2 = getComputerChoice();
+                let playerSelection2 = getPlayerChoice();
+                return playRound(playerSelection2, computerSelection2);
+            }
+            if (playerSelection == "rock") {
+                if (computerSelection == "scissors") {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else if (playerSelection == "paper") {
+                if (computerSelection == "rock") {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } else {
+                if (computerSelection == "paper") {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        }
+
+        function game() {
+            let score = 0;
+            for (let i = 0; i<5; i++) {
+                playerChoice = getPlayerChoice();
+                computerChoice = getComputerChoice();
+                change = playRound(playerChoice, computerChoice);
+                score += change
+            }
+
+            if (score > 0) {
+                console.log("The player won!")
+            } else {
+                console.log("The computer won :(")
+            }
+        }
+
+        game()
+    </script>
+</body>
+</html>
