@@ -5,13 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="rps.css">
 </head>
 <body>
+    <div class="counter">
+        <div id="humanWins">1</div>
+        <div id="winner">2</div>
+        <div id="computerWins">3</div>
+    </div>
+    <div class="buttons">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
     <script>
         let choices = ["rock", "paper", "scissors"];
         let computerChoice;
         let playerChoice;
         let result;
+
+        let playerScore = 0;
+        let computerScore = 0;
 
         function getComputerChoice() {
             return choices[Math.floor(Math.random() * choices.length)];
@@ -25,9 +39,8 @@
 
         function playRound(playerSelection, computerSelection) {
             if (playerSelection == computerSelection) {
-                let computerSelection2 = getComputerChoice();
-                let playerSelection2 = getPlayerChoice();
-                return playRound(playerSelection2, computerSelection2);
+                alert("click again");
+                return 0;
             }
             if (playerSelection == "rock") {
                 if (computerSelection == "scissors") {
@@ -49,24 +62,13 @@
                 }
             }
         }
-
-        function game() {
-            let score = 0;
-            for (let i = 0; i<5; i++) {
-                playerChoice = getPlayerChoice();
-                computerChoice = getComputerChoice();
-                change = playRound(playerChoice, computerChoice);
-                score += change
-            }
-
-            if (score > 0) {
-                console.log("The player won!")
-            } else {
-                console.log("The computer won :(")
-            }
-        }
-
-        game()
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                let result = playRound(button.id, getComputerChoice())
+                alert(result)
+            });
+        });
     </script>
 </body>
 </html>
