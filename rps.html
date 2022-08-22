@@ -9,14 +9,17 @@
 </head>
 <body>
     <div class="counter">
-        <div id="humanWins">1</div>
-        <div id="winner">2</div>
-        <div id="computerWins">3</div>
+        <div id="humanWins"></div>
+        <div>-</div>
+        <div id="computerWins"></div>
     </div>
     <div class="buttons">
         <button id="rock">ROCK</button>
         <button id="paper">PAPER</button>
         <button id="scissors">SCISSORS</button>
+    </div>
+    <div class="instructions">
+        <p id="instructionBox">Welcome! The first to five wins!</p>
     </div>
     <script>
         let choices = ["rock", "paper", "scissors"];
@@ -26,6 +29,13 @@
 
         let playerScore = 0;
         let computerScore = 0;
+
+        let textBox = document.querySelector('#instructionBox');
+        let compWins = document.querySelector('#computerWins');
+        let humWins = document.querySelector('#humanWins');
+
+        compWins.textContent = "0"
+        humWins.textContent = "0"
 
         function getComputerChoice() {
             return choices[Math.floor(Math.random() * choices.length)];
@@ -39,7 +49,6 @@
 
         function playRound(playerSelection, computerSelection) {
             if (playerSelection == computerSelection) {
-                alert("click again");
                 return 0;
             }
             if (playerSelection == "rock") {
@@ -66,8 +75,38 @@
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 let result = playRound(button.id, getComputerChoice())
-                alert(result)
+                if (result == 1) {
+                    humanWon()
+                } else if (result == -1) {
+                    computerWon()
+                } else {
+                    tieRound()
+                };
             });
+
+        function humanWon() {
+            textBox.textContent = 'Human Wins!';
+            playerScore += 1;
+            if (playerScore == 5) winner(1);
+            humWins.textContent = playerScore;
+        }
+        function computerWon() {
+            textBox.textContent = 'Comupter Wins!';
+            computerScore += 1;
+            if (computerScore == 5) winner(0);
+            compWins.textContent = computerScore
+        }
+        function tieRound() {
+            textBox.textContent = "It's a tie, play again."
+        }
+        function winner(w) {
+            if (w == 1) {
+                textBox.textContent = "The human won the game! Refresh to play again!"
+            } else {
+                textBox.textContent = "The computer won the game. Refresh to play again."
+            }
+
+        }
         });
     </script>
 </body>
