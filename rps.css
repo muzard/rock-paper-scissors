@@ -2,6 +2,10 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+body {
+    height: 100%;
+    background-color: rgb(82, 82, 82);
+}
 
 .buttons,
 .counter {
@@ -29,6 +33,8 @@
     font-size: 48px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: azure;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 button {
@@ -49,4 +55,25 @@ button {
     padding: 12px;
     color: azure;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.playerChoice {
+    transform: scale(1.2);
+    border: 5px solid blue;
+    border-radius: 14px;
+    box-shadow: 0 0 20px darkblue;
+}
+
+.computerChoice {
+    transform: scale(1.1);
+    border: 5px solid red;
+    border-radius: 14px;
+    box-shadow: 0 0 20px darkred;
+}
+
+.playerChoice.computerChoice {
+    transform: scale(1.2);
+    border: 5px solid rgb(147, 0, 200);
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(147, 0, 200, 0.635);  
 }
