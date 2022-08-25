@@ -26,6 +26,11 @@
             <div class="instructions">
                 <p id="instructionBox">Welcome! The first to five wins!</p>
             </div>
+            <div id="replayContainer">
+                <button id="replay">
+                    REPLAY
+                </button>
+            </div>
         </div>
         <div id="lowerPart">
             <div class="footer"></div>
@@ -40,6 +45,7 @@
         let computerChoice;
         let playerChoice;
         let result;
+        let gameIsStillOn = true;
 
         let playerScore = 0;
         let computerScore = 0;
@@ -107,35 +113,46 @@
                 };
 
                 await sleep(1000)
-                button.classList.remove('playerChoice')
-                compChoiceButton.classList.remove('computerChoice')
-                textBox.textContent = "Choose your next move:"
-            });
-
-            function humanWon() {
-                textBox.textContent = 'Human Wins!';
-                playerScore += 1;
-                if (playerScore == 5) winner(1);
-                humWins.textContent = playerScore;
-            }
-            function computerWon() {
-                textBox.textContent = 'Comupter Wins!';
-                computerScore += 1;
-                if (computerScore == 5) winner(0);
-                compWins.textContent = computerScore
-            }
-            function tieRound() {
-                textBox.textContent = "It's a tie, play again."
-            }
-            function winner(w) {
-                if (w == 1) {
-                    textBox.textContent = "The human won the game! Refresh to play again!"
-                } else {
-                    textBox.textContent = "The computer won the game. Refresh to play again."
+                if (gameIsStillOn) {
+                    button.classList.remove('playerChoice')
+                    compChoiceButton.classList.remove('computerChoice')
+                    textBox.textContent = "Choose your next move:"
                 }
-
-            }
+            });
         });
+        function humanWon() {
+            textBox.textContent = 'Human Wins!';
+            playerScore += 1;
+            humWins.textContent = playerScore;
+            if (playerScore >= 5) winner(1);
+        }
+        function computerWon() {
+            textBox.textContent = 'Comupter Wins!';
+            computerScore += 1;
+            compWins.textContent = computerScore
+            if (computerScore >= 5) winner(0);
+        }
+        function tieRound() {
+            textBox.textContent = "It's a tie, play again."
+        }
+        function winner(w) {
+            if (w == 1) {
+                textBox.textContent = "The human won the game! Refresh to play again!"
+                gameOver()
+            } else {
+                textBox.textContent = "The computer won the game. Refresh to play again."
+                gameOver()
+            }
+        }
+        function gameOver() {
+            buttons.forEach((button) => {
+                gameIsStillOn = false
+                button.disabled = true
+                button.classList.remove('computerChoice')
+                button.classList.remove('playerChoice')
+            }
+            )
+        };
     </script>
 </body>
 
