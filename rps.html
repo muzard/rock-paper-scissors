@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,28 @@
     <title>Document</title>
     <link rel="stylesheet" href="rps.css">
 </head>
+
 <body>
-    <div class="counter">
-        <div id="humanWins"></div>
-        <div>-</div>
-        <div id="computerWins"></div>
-    </div>
-    <div class="buttons">
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
-    </div>
-    <div class="instructions">
-        <p id="instructionBox">Welcome! The first to five wins!</p>
+    <div class="flexbox">
+        <div id="upperPart">
+            <div class="header"></div>
+            <div class="counter">
+                <div id="humanWins"></div>
+                <div>-</div>
+                <div id="computerWins"></div>
+            </div>
+            <div class="buttons">
+                <button id="rock">ROCK</button>
+                <button id="paper">PAPER</button>
+                <button id="scissors">SCISSORS</button>
+            </div>
+            <div class="instructions">
+                <p id="instructionBox">Welcome! The first to five wins!</p>
+            </div>
+        </div>
+        <div id="lowerPart">
+            <div class="footer"></div>
+        </div>
     </div>
     <script>
         function sleep(ms) {
@@ -102,30 +112,31 @@
                 textBox.textContent = "Choose your next move:"
             });
 
-        function humanWon() {
-            textBox.textContent = 'Human Wins!';
-            playerScore += 1;
-            if (playerScore == 5) winner(1);
-            humWins.textContent = playerScore;
-        }
-        function computerWon() {
-            textBox.textContent = 'Comupter Wins!';
-            computerScore += 1;
-            if (computerScore == 5) winner(0);
-            compWins.textContent = computerScore
-        }
-        function tieRound() {
-            textBox.textContent = "It's a tie, play again."
-        }
-        function winner(w) {
-            if (w == 1) {
-                textBox.textContent = "The human won the game! Refresh to play again!"
-            } else {
-                textBox.textContent = "The computer won the game. Refresh to play again."
+            function humanWon() {
+                textBox.textContent = 'Human Wins!';
+                playerScore += 1;
+                if (playerScore == 5) winner(1);
+                humWins.textContent = playerScore;
             }
+            function computerWon() {
+                textBox.textContent = 'Comupter Wins!';
+                computerScore += 1;
+                if (computerScore == 5) winner(0);
+                compWins.textContent = computerScore
+            }
+            function tieRound() {
+                textBox.textContent = "It's a tie, play again."
+            }
+            function winner(w) {
+                if (w == 1) {
+                    textBox.textContent = "The human won the game! Refresh to play again!"
+                } else {
+                    textBox.textContent = "The computer won the game. Refresh to play again."
+                }
 
-        }
+            }
         });
     </script>
 </body>
+
 </html>

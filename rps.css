@@ -3,8 +3,36 @@
 }
 
 body {
-    height: 100%;
     background-color: rgb(82, 82, 82);
+}
+
+.flexbox {
+    min-height: 100vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(82, 82, 82);
+}
+
+.kontsa {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.footer {
+    height: 40px;
+    background-color: rgb(38, 38, 38);
+    margin: -8px;
+    margin-top: auto;
+}
+
+.header {
+    height: 80px;
+    background-color: rgb(38, 38, 38);
+    margin: -8px;
 }
 
 .buttons,
